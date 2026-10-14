@@ -1,7 +1,4 @@
-@@ -0,0 +1,131 @@
-"""Campus Talent Show: a cheerful MC must keep the show on time.
-Run: python3 story.py. All acts and timings are fictional classroom examples.
-"""
+
 from abc import ABC, abstractmethod
 
 
@@ -59,7 +56,12 @@ class Poetry(Performance):  # Shared parent: hierarchical inheritance.
 class ShortDance(Dance):  # Performance -> Dance -> ShortDance: multilevel.
     def duration(self):
         return super().duration() // 2  # Extend a parent's implementation.
-
+class LightningDance(ShortDance):  # Performance -> Dance -> ShortDance -> LightningDance
+    def duration(self):
+        return max(1, super().duration() - 1) # Extend a parent's implementation.
+lightning_dance = LightningDance("Mukono Lightning Crew")
+print(lightning_dance.describe())  # 2 minutes, not 0: the max() protects the rule.
+print(lightning_dance.duration())  # 2 minutes, not 0: the max() protects the rule.
 
 # ACT 3: One extra capability joins the existing dance family.
 class ApplauseMixin:
